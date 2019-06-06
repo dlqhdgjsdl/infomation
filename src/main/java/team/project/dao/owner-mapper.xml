@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="5">
+
+   <insert id="joinOwner" parameterType="owner">
+      <selectKey keyProperty="ownerno" order="BEFORE" resultType="int">
+         select owner_seq.nextval from dual
+      </selectKey>
+      <choose>
+       <when test="owneraddr != null">
+        insert into owner
+        values(#{ownerno},#{ownerid},#{ownerpass},#{ownername},#{ownerphone},#{ownermenucate},#{owneremail},#{owneraddr})
+       </when>
+       <otherwise>
+            insert into owner
+            values(#{ownerno},#{ownerid},#{ownerpass},#{ownername},#{ownerphone},#{ownermenucate},#{owneremail})
+       </otherwise>
+      </choose>
+   </insert>
+   <select id="loginOwner" parameterType="String" resultType="String">
+      select ownerpass from owner where ownerid=#{id}
+   </select>
+
+   <select id="selectno" parameterType="String" resultType="int">
+      select ownerno from owner where ownerid=#{ownerid}
+   </select>
+   <insert id="cateOwner" parameterType="owner">
+      insert into menucate values(#{ownerno},#{ownermenucate})
+   </insert>
+
+   <insert id="addMenu" parameterType="menu">
+      insert into ${ownermenucate}
+      values(#{ownermenucate},#{ownerno},#{menukind},#{menuname},#{menuprice},#{menuexplain},#{menuimg})
+   </insert>
+   <select id="selectMenuList" resultType="menu" parameterType="menu">
+      select * from ${ownermenucate}
+      where ownerno=#{ownerno}
+   </select>
+   <select id="selectOwner" parameterType="int" resultType="owner">
+      select * from owner where ownerno=#{ownerno}
+   </select>
+   <select id="selectCheckStore" parameterType="int" resultType="boolean">
+      select * from store
+      where ownerno=#{ownerno}
+   </select>
+   <select id="storeAddProcess" parameterType="store">
+      insert into store
+      values(#{ownerno},#{storename},#{storestart},#{storeend},#{storeaddr},#{storephone},#{storeimg})
+   </select>
+   <select id="storeModifyProcess" parameterType="store">
+      update store set
+      <if test="storename != ''">storename=#{storename}</if>
+      <if test="storestart != ''">,storestart=#{storestart}</if>
+      <if test="storeend != ''">,storeend=#{storeend}</if>
+      <if test="storeaddr != ''">,storeaddr=#{storeaddr}</if>
+      <if test="storephone != ''">,storephone=#{storephone}</if>
+      <if test="storeimg != null">,storeimg=#{storeimg}</if>
+      where ownerno=${ownerno}
+   </select>
+   <update id="updateOwner" parameterType="owner">
+      update owner set
+      <if test="ownerpass != ''">ownerpass=#{ownerpass}</if>
+      <if test="ownerphone != ''">,ownerphone=#{ownerphone}</if>
+      <if test="owneremail != ''">,owneremail=#{owneremail}</if>
+      <if test="owneraddr != ''">,owneraddr=#{owneraddr}</if>
+      where ownerno=${ownerno}
+   </update>
+   <select id="selectinfoStore" parameterType="int" resultType="store">
+      select * from store
+   </select>
+
+	
+	<!-- coupon db start -->
+	<insert id="insertCoupon" parameterType="coupon">
+		<!-- <selectKey keyProperty="couponno" order="BEFORE" resultType="int"> 
+			select coupon_seq.nextval from dual </selectKey> -->
+		insert into coupon
+		values(coupon_seq.nextval,#{ownerno},#{couponname},sysdate+to_number(replace(#{couponstrat},'일','')),
+		#{coupondiscount},#{couponquntity},sysdate)
+	</insert>
+	
+	<select id="couponSelectList" parameterType="HashMap"
+		resultType="coupon">
+		SELECT RM,COUPONNO, OWNERNO, COUPONNAME, COUPONSTRAT,
+		COUPONDISCOUNT, COUPONQUNTITY, COUPONDATE
+		FROM(
+		SELECT ROWNUM RM,COUPONNO, OWNERNO, COUPONNAME, COUPONSTRAT,
+		COUPONDISCOUNT, COUPONQUNTITY, COUPONDATE
+		FROM(
+		SELECT COUPONNO, OWNERNO, COUPONNAME, COUPONSTRAT,
+		COUPONDISCOUNT, COUPONQUNTITY, COUPONDATE
+		FROM COUPON
+		WHERE OWNERNO=#{ownerno}
+		<if test="inputdata!=null">
+			<!-- AND ${query} LIKE '%'||#{inputdata}||'%' -->
+			AND COUPONNAME LIKE '%' ||#{inputdata}||'%'
+		</if>
+		ORDER BY COUPONNO DESC))
+		WHERE RM BETWEEN #{start} AND #{end}
+	</select>
+	<delete id="couponDelete" parameterType="Integer">
+		DELETE FROM COUPON
+		WHERE COUPONNO=#{couponno}
+	</delete>
+	<select id="totalRowCoupon" resultType="Integer" parameterType="Integer">
+		SELECT COUNT(*) FROM COUPON
+		WHERE OWNERNO=#{value}
+	</select>
+	<!-- coupondbexit -->
+	
+	<!-- <reviewdb start> -->
+	<insert id="insertReview" parameterType="review">
+	INSERT INTO REVIEW
+	VALUES(#{reviewno},0,#{contents},sysdate,#{ownerno})
+	</insert>
+	
+	<select id="reviewSelect" parameterType="HashMap" resultType="review">
+	SELECT RM,REVIEWNO,CONTENTS,REVIEWDATE FROM(
+	SELECT ROWNUM RM,REVIEWNO,CONTENTS,REVIEWDATE FROM(
+	SELECT REVIEWNO,CONTENTS, REVIEWDATE FROM REVIEW
+	<!-- 조건 나중에 주기로함 -->
+	WHERE REVIEWNO=#{reviewno}
+	ORDER BY REVIEWNO DESC))
+	WHERE RM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<delete id="reviewDelete" parameterType="Integer">
+		DELETE FROM REVIEW
+		WHERE REVIEWNO=#{reviewno}
+	</delete>
+	<!-- order 시작 -->
+	<select id="orderSelect" parameterType="Integer" resultType="order">
+		SELECT ORDERNO,USERNO,OWNERNO,ORDERDATE,SUMPRICE,ADDR,PAY,COUPON,
+		ORDERREQUEST,DELICHOOSE  FROM DELIORDER WHERE USERNO=#{userno}
+	</select>
+	<update id="updateOrder" parameterType="HashMap">
+		UPDATE DELIORDER SET DELICHOOSE=#{btn} WHERE ORDERNO=#{orderno}
+	</update>
+</mapper>

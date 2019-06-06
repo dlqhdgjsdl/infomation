@@ -1,0 +1,165 @@
+@CHARSET "EUC-KR";
+
+/* clearfix */
+.clearfix {*zoom:1;}
+.clearfix:before, .clearfix:after {display: block; content: ''; line-height: 0;}
+.clearfix:after {clear: both;}
+
+*{
+	margin:0;
+	padding:0;
+	
+}
+
+a{
+	text-decoration:none;
+	color:#fff;
+}
+a:hover{
+	text-decoration:none;
+}
+
+ul li{
+	list-style:none;
+}
+
+body{
+}
+
+div#nav{
+	width:100%;
+	position: relative;
+    top: -24px;
+    padding-top: 24px;
+    z-index:999;
+    height: 270px;
+}
+
+div#nav>div{
+	width: 1140px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 999;
+	
+}
+
+div#nav div#nav_header{
+	margin-top:25px;
+}
+
+
+div#nav div#nav_header a{
+	display:inline-block;
+}
+div#nav div#nav_header>a{
+	margin-top: 18px;
+}
+
+div#nav div#nav_header a img{
+	width:150px;
+}
+
+div#nav div#nav_header ul{
+	float:right;
+}
+
+div#nav div#nav_header>ul>li{
+	float:left;
+	font-size: 14px;
+    padding: 0 42px;
+    color: #434343;
+    border-right: 1px solid #bebcbc;
+}
+
+div#nav div#nav_header>ul>li>a{
+	font-size: 14px;
+    color: #bebcbc;
+}
+
+div#nav div#nav_header>ul>li:last-child{
+	border-right:none;
+}
+div#nav_middle{
+	margin-top:20px;
+}
+
+div#nav_middle ul#mainnav>li{
+	float:left;
+	margin-right:62px;
+}
+
+/*subnav*/
+
+ul#mainnav{
+	position:relative;
+}
+
+ul#mainnav>li>a{
+	display:inline-block;
+	padding-bottom:10px;
+	border-bottom:1px solid rgba(0,0,0,0);
+	margin-bottom: 10px;
+	font-weight:bold;
+}
+
+ul#mainnav>li>a:hover{
+	border-bottom:1px solid #666a75;
+}
+
+
+ul.subnav{
+	position:absolute;
+	display:none;
+	
+}
+
+ul.subnav li{
+	float:none;
+	padding-bottom: 15px;
+}
+
+ul.subnav li a{
+	color:#666a75;
+	font-size: 14px;
+    font-weight: bold;
+    padding-bottom:4px;
+}
+
+
+div.bx-wrapper{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	border:none;
+}
+
+ul.bxslider{
+	width:100%;
+	position:relative;
+}
+
+.bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-controls-auto{
+	display:none;
+}
+
+.bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-pager{
+	display:none;
+}
+
+ul.bxslider>li>div>pre{
+	    font-size: 31px;
+    font-weight: bold;
+    color: white;
+    font-family: "³ª´®°íµñ";
+    line-height: 40px;
+}
+
+ul.bxslider>li>div>input{
+	    background-color: rgba(0,0,0,0);
+    border: 2px solid #fff;
+    padding: 20px;
+    font-size: 19px;
+    color: #fff;
+    margin-top: 26px;
+}
