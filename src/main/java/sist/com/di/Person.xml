@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	
+	
+	<bean id="person1" class="sist.com.di.Person" scope="singleton"><!-- 셋업방법 -->
+	<property name="name" value="bong"></property>
+	<property name="age" value="23"></property>
+	<property name="job" value="백수의왕 사자"></property>
+	<property name="addr" value="인천"></property>
+	</bean>
+	
+	<bean id="person2" class="sist.com.di.Person" scope="prototype" p:name="bongbong" p:addr="제주도" p:job="여행" p:age="22"></bean><!-- 네임스페이스 방법 -->
+	
+	
+	<bean id="person3" class="sist.com.di.Person" scope="singleton">
+		<constructor-arg name="name" value="lee"></constructor-arg>
+	</bean>
+ 
+</beans>

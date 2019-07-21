@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="3">
+
+<select id="selectLogin" parameterType="String" resultType="String">
+	SELECT PW FROM INTERLOGIN
+	where ID=#{id}
+	
+</select>
+
+
+
+
+<insert id="InsertProductex1" parameterType="sist.com.model.InterProduct">
+	
+	INSERT INTO INTERPRODUCT VALUES(interproduct_SEQ.NEXTVAL,#{id},#{productname},#{local},#{price},#{cate},#{img})	
+	
+</insert>
+
+<select id="listAction" parameterType="String" resultType="sist.com.model.InterProduct">
+	SELECT * FROM INTERPRODUCT
+	WHERE ID=#{id}
+	
+</select>
+
+<select id="selectno" parameterType="java.lang.Integer" resultType="sist.com.model.InterProduct">
+	SELECT * FROM INTERPRODUCT WHERE NO=#{no}
+</select>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="7">
+
+	<insert id="insertWriter" parameterType="test">
+		INSERT INTO TEST VALUES(test_seq.nextval,#{t1},#{t2},#{t3},'bong',sysdate)
+	</insert>
+	
+	<select id="showlist" parameterType="test" resultType="test">
+		SELECT * FROM TEST
+	</select>
+	
+	<select id="showInfo" parameterType="String" resultType="test">
+		SELECT T,T1,T2,T3,T4,T5 FROM TEST 
+		WHERE T=8
+	</select>
+	
+	<!-- <select id="t2id" parameterType="String" resultType="String">
+		SELECT T2 FROM TEST
+	</select> -->
+</mapper>

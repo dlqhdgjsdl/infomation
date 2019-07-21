@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	<bean id="test" class="sist.com.test.test" scope="singleton">
+	<property name="name" value="heon"></property>
+	<property name="price" value="20000"></property>
+	<property name="qulity" value="5"></property>
+	</bean>
+	
+	<bean id="test1" class="sist.com.test.test" scope="singleton" p:name="방방" p:price="25000" p:qulity="2"></bean>
+	
+	
+	
+	<bean id="testbean" class="sist.com.test.testbean" scope="singleton">
+		<property name="map" ref="map1"></property>
+	</bean>
+	
+	
+	<util:map id="map1" key-type="java.lang.Integer" map-class="java.util.HashMap" value-type="sist.com.test.testbean" scope="singleton">
+		<entry>
+			<key>
+				<value type="java.lang.Integer">1</value>
+			</key>
+			<ref bean="test"/>
+		</entry>
+		<entry>
+			<key>
+				<value>2</value>
+			</key>
+			<ref bean="test1"/>
+		</entry>
+	</util:map>
+</beans>

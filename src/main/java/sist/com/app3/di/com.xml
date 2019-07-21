@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<context:annotation-config />
+<bean id="computer" class="sist.com.app3.di.Computer" scope="singleton">
+	<property name="maker" value="t1"></property>
+	<property name="price" value="5000"></property>
+	<property name="model" value="ttt"></property>
+	<property name="position" value="tttt"></property>
+</bean>
+
+<bean id="computer1" class="sist.com.app3.di.Computer" scope="singleton" p:maker="t2" p:price="20000" p:model="tt" p:position="t2">
+</bean>
+ <bean id="store" class="sist.com.app3.di.Store" scope="singleton">
+	<!-- <property name="map" ref="map1"></property> -->
+</bean>  
+
+	<util:map id="map1" key-type="java.lang.Integer" map-class="java.util.HashMap" value-type="sist.com.app3.di.Computer" scope="singleton">
+		<entry>
+		<key>
+			<value type="java.lang.Integer">1</value>
+			</key>
+			<ref bean="computer1"/>
+		</entry>
+		<entry>
+			<key>
+				<value>2</value>
+			</key>
+			<ref bean="computer"/>
+		</entry>	
+	</util:map>
+<bean id="store1" class="sist.com.app3.di.Store">
+<property name="properties">
+	<props>
+	<prop key="url">oracle.util.OracleDriver</prop>
+	<prop key="userName">Orange</prop>
+	<prop key="password">1234</prop>
+	<prop key="admin">Lee</prop>
+	</props>
+</property>
+</bean>
+</beans>

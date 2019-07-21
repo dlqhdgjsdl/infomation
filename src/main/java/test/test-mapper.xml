@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="6">
+
+<!-- 	<insert id="insertreply" parameterType="test">
+		INSERT INTO TEST VALUES(#{id},#{reply},#{no})
+	</insert>
+	<select id="selectreply" parameterType="test" resultType="test">
+		SELECT ID,REPLY,NO FROM TEST
+		
+	</select> -->
+
+</mapper>

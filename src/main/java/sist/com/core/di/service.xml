@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+<bean id="openSession" class="sist.com.core.di.OpenSessionEx"></bean>
+<bean id="jdbcDao" class="sist.com.core.di.JdbcDao"></bean>
+<bean id="iBatisDao" class="sist.com.core.di.IBatisDao"></bean>
+<bean id="myBatisDao" class="sist.com.core.di.MyBatisDao" p:opensession-ref="openSession"></bean> <!-- bean에 p:를 통해 오픈세션을 추가 시켜주어서 두개의 클래스를 받을수 있게 해준다. -->
+
+<bean id="service1-1" class="sist.com.core.di.AdminServiceUtilImp" scope="singleton">
+<property name="dao" ref="jdbcDao"></property>
+</bean>
+<bean id="service1-2" class="sist.com.core.di.AdminServiceUtilImp" scope="singleton">
+<property name="dao" ref="iBatisDao"></property>
+</bean>
+<bean id="service1-3" class="sist.com.core.di.AdminServiceUtilImp" scope="singleton">
+<property name="dao" ref="myBatisDao"></property>
+</bean>
+<bean id="service2" class="sist.com.core.di.ClientServiceUtilImp" scope="singleton"></bean>
+
+</beans>

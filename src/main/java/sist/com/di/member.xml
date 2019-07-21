@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-2.0.xsd">
+<!-- 싱글턴은 한번만들어지고 나면 안 사라지기 때문에 매번 객체를 생성할때 싱글턴을 사용하면 좋다
+프로토 타입은 생성자가 매번 생성해 질때 필요하기 때문에 request로 객체를 부를 때 사용하면 좋다. -->
+
+
+<bean id="member1" class="sist.com.di.Member" scope="singleton"><!-- 생성자 인젝션을 만드는 방법 -->
+		<constructor-arg name="id" value="BLUE"></constructor-arg>
+		<constructor-arg name="name" value="bong"></constructor-arg>
+		<constructor-arg name="email" value="naver.com"></constructor-arg>
+		<constructor-arg name="address" value="인천시"></constructor-arg>
+		<constructor-arg name="hit" value="50"></constructor-arg>
+		<constructor-arg name="date" value="2019-03-26"></constructor-arg>
+</bean>
+	<bean id="member2" class="sist.com.di.Member" scope="prototype" p:id="red" p:name="bongbong" p:email="google.com" p:address="제주시" p:hit="45" p:date="2019-3-18" init-method="initMember">
+	</bean>
+	
+	
+	<bean id="member3" class="sist.com.di.Member" scope="singleton" >
+	<property name="id" value="bong"></property><!-- 순서가 없음 --> 
+	<property name="name" value="bongbong"></property>
+	<property name="email" value="bongbong@daum.com"></property>
+	<property name="address" value="강남사람"></property>
+	<property name="hit" value="50000"></property>
+	<property name="date" value="1993-08-30"></property>
+	</bean>
+	<bean id="bongband" class="sist.com.di.BongBand" scope="prototype">
+		<property name="map">
+			<map>
+				<entry>
+					<key>
+						<value type="java.lang.Integer">1</value>
+					</key>
+					<ref bean="member1"></ref>
+				</entry>
+				<entry>
+					<key>
+						<value type="java.lang.Integer">2</value>
+					</key>
+					<ref bean="member2"></ref>
+				</entry>	
+				<entry>
+					<key>
+						<value type="java.lang.Integer">3</value>
+					</key>
+					<ref bean="member3"></ref>
+				</entry>				
+			</map>
+		</property>
+		
+		<property name="set">
+			<set>
+				<ref bean="member1"/>
+				<ref bean="member2"/>
+				<ref bean="member3"/>
+				<ref bean="member1"/>
+				<ref bean="member2"/>
+				<ref bean="member3"/>
+				<ref bean="member1"/>
+				<ref bean="member2"/>
+				<ref bean="member3"/>
+			</set>
+		</property>
+		<property name="list">
+			<list>
+				<ref bean="member1"/>
+				<ref bean="member2"/>
+				<ref bean="member3"/>
+				<ref bean="member1"/>
+				<ref bean="member2"/>
+				<ref bean="member3"/>
+				<ref bean="member1"/>
+				<ref bean="member2"/>
+				<ref bean="member3"/>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="1">
+	<select id="loginProcess" parameterType="java.lang.String" resultType="java.lang.String">
+	SELECT PASSWORD FROM ADMINMEMBER
+	WHERE ID=#{VALUE}
+	</select>
+	
+	<!-- <select id="empList"  resultType="sist.com.dao.empBean">
+		SELECT EMPNO,ENAME,JOB	FROM EMP;
+	</select>  -->
+	
+	 <select id="selectEmpProcess" resultType="emp">    
+      SELECT empno,ename,sal,nvl(comm,0)comm,hiredate
+      from emp
+    </select>
+	
+	<select id="selectdbemp" resultType="emp">
+	SELECT empno,ename,sal
+	from emp
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

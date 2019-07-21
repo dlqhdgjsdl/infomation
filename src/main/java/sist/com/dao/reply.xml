@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="4">   
+   
+    <insert id="insertReply">
+    	<selectKey keyProperty="no" order="BEFORE" resultType="int">
+    	SELECT reply_SEQ.NEXTVAL FROM DUAL
+    	</selectKey>
+    	INSERT INTO reply VALUES(#{no},#{contents},#{id},3,2,1,#{image},SYSDATE,#{infopk})     
+    </insert>
+    
+    <update id="ReUpdate" parameterType="java.util.HashMap">
+    	UPDATE RE SET CONTENTS=#{contents}
+    	WHERE NO=#{no}
+    </update>
+    
+    <insert id="reInsert">
+    <selectKey keyProperty="no" order="BEFORE" resultType="int">
+    SELECT re_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+    INSERT INTO RE VALUES(#{no},#{contents},#{id},1,2,3,#{image},SYSDATE)
+    </insert>
+    
+    <select id="reselect" resultType="sist.com.model.ReBean">
+    SELECT * FROM RE
+    ORDER BY NO 
+    </select>
+    
+    <delete id="ReDelete">
+    DELETE FROM RE
+    WHERE NO=#{no}
+    </delete>
+    
+    <select id="selectre" resultType="sist.com.model.ReBean">
+    SELECT * FROM RE
+    ORDER BY NO
+    </select>
+    
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
