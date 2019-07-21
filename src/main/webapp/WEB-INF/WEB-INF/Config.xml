@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration><!-- DB설정(Connection) -->
+  
+  <typeAliases>
+    <typeAlias type="sist.com.model.EmpBean" alias="emp"/>
+    <typeAlias type="sist.com.model.StudentBean" alias="stud"/>
+    <typeAlias type="sist.com.model.CardBean" alias="card"/>
+    <typeAlias type="sist.com.model.ProductBean" alias="cart"/>
+    <typeAlias type="sist.com.model.ReplyBean" alias="reply"/>
+     <typeAlias type="team.project.vo.OwnerBean" alias="owner"/>
+     <typeAlias type="team.project.vo.MenuAddBean" alias="menu"/>
+     <typeAlias type="team.project.vo.StoreBean" alias="store"/>
+     <typeAlias type="team.project.vo.CouponBean" alias="coupon"/>
+     <typeAlias type="team.project.vo.ReviewBean" alias="review"/>
+  </typeAliases>
+    <mappers>
+    <mapper resource="sist/com/dao/board-mapper.xml"/>
+    <mapper resource="sist/com/dao/card.xml"/>
+    <mapper resource="sist/com/dao/Cart.xml"/>
+    <mapper resource="team/project/dao/owner-mapper.xml"/>
+<!--     <mapper resource="sist/com/dao/reply.xml"/> --> 
+  
+    
+       
+    </mappers>
+    
+</configuration>

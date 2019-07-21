@@ -1,0 +1,344 @@
+@CHARSET "EUC-KR";
+
+/* clearfix */
+.clearfix {*zoom:1;}
+.clearfix:before, .clearfix:after {display: block; content: ''; line-height: 0;}
+.clearfix:after {clear: both;}
+
+*{
+	margin:0;
+	padding:0;
+	
+}
+
+a{
+	text-decoration:none;
+	color: #ffffff;
+}
+a:hover{
+	text-decoration:none;
+}
+
+ul li{
+	list-style:none;
+}
+
+body{
+}
+
+div#nav{
+	width:100%;
+	position: relative;
+    top: -24px;
+    padding-top: 24px;
+    z-index:999;
+    height: 270px;
+}
+
+div#nav>div{
+	width: 1140px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 999;
+	
+}
+
+div#nav div#nav_header{
+	margin-top:25px;
+}
+
+
+div#nav div#nav_header a{
+	display:inline-block;
+}
+div#nav div#nav_header>a{
+	margin-top: 18px;
+}
+
+div#nav div#nav_header a img{
+	width:150px;
+}
+
+div#nav div#nav_header ul{
+	float:right;
+}
+
+div#nav div#nav_header>ul>li{
+	float:left;
+	font-size: 14px;
+    padding: 0 42px;
+    color: #434343;
+    border-right: 1px solid #bebcbc;
+}
+
+div#nav div#nav_header>ul>li>a{
+	font-size: 14px;
+    color: #bebcbc;
+}
+
+div#nav div#nav_header>ul>li:last-child{
+	border-right:none;
+}
+div#nav_middle{
+	margin-top:20px;
+}
+
+div#nav_middle ul#mainnav>li{
+	float:left;
+	margin-right:62px;
+}
+
+/*subnav*/
+
+ul#mainnav{
+	position:relative;
+}
+
+ul#mainnav>li>a{
+	display:inline-block;
+	padding-bottom:10px;
+	border-bottom:1px solid rgba(0,0,0,0);
+	margin-bottom: 10px;
+	font-weight:bold;
+}
+
+ul#mainnav>li>a:hover{
+	border-bottom:1px solid #666a75;
+}
+
+
+ul.subnav{
+	position:absolute;
+	display:none;
+	
+}
+
+ul.subnav li{
+	float:none;
+	padding-bottom: 15px;
+}
+
+ul.subnav li a{
+	color:#666a75;
+	font-size: 14px;
+    font-weight: bold;
+    padding-bottom:4px;
+}
+
+bx slider 이벤트 효과 시작 부분
+
+
+/** VARIABLES
+===================================*/
+/** RESET AND LAYOUT
+===================================*/
+.bx-wrapper {
+  position: relative;
+  margin-bottom: 60px;
+  padding: 0;
+  *zoom: 1;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+}
+.bx-wrapper img {
+  max-width: 100%;
+  display: block;
+}
+.bxslider {
+  margin: 0;
+  padding: 0;
+}
+ul.bxslider {
+  list-style: none;
+}
+.bx-viewport {
+  /*fix other elements on the page moving (on Chrome)*/
+  -webkit-transform: translatez(0);
+}
+/** THEME
+===================================*/
+.bx-wrapper {
+  -moz-box-shadow: 0 0 5px #ccc;
+  -webkit-box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 5px #ccc;
+  border: 5px solid #fff;
+  background: #fff;
+}
+.bx-wrapper .bx-pager,
+.bx-wrapper .bx-controls-auto {
+  position: absolute;
+  bottom: -30px;
+  width: 100%;
+}
+/* LOADER */
+.bx-wrapper .bx-loading {
+  min-height: 50px;
+  background: url('images/bx_loader.gif') center center no-repeat #ffffff;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+}
+/* PAGER */
+.bx-wrapper .bx-pager {
+  text-align: center;
+  font-size: .85em;
+  font-family: Arial;
+  font-weight: bold;
+  color: #666;
+  padding-top: 20px;
+}
+.bx-wrapper .bx-pager.bx-default-pager a {
+  background: #666;
+  text-indent: -9999px;
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  outline: 0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.bx-wrapper .bx-pager.bx-default-pager a:hover,
+.bx-wrapper .bx-pager.bx-default-pager a.active,
+.bx-wrapper .bx-pager.bx-default-pager a:focus {
+  background: #000;
+}
+.bx-wrapper .bx-pager-item,
+.bx-wrapper .bx-controls-auto .bx-controls-auto-item {
+  display: inline-block;
+  vertical-align: bottom;
+  *zoom: 1;
+  *display: inline;
+}
+.bx-wrapper .bx-pager-item {
+  font-size: 0;
+  line-height: 0;
+}
+/* DIRECTION CONTROLS (NEXT / PREV) */
+.bx-wrapper .bx-prev {
+  left: 10px;
+  background: url('images/controls.png') no-repeat 0 -32px;
+}
+.bx-wrapper .bx-prev:hover,
+.bx-wrapper .bx-prev:focus {
+  background-position: 0 0;
+}
+.bx-wrapper .bx-next {
+  right: 10px;
+  background: url('images/controls.png') no-repeat -43px -32px;
+}
+.bx-wrapper .bx-next:hover,
+.bx-wrapper .bx-next:focus {
+  background-position: -43px 0;
+}
+.bx-wrapper .bx-controls-direction a {
+  position: absolute;
+  top: 50%;
+  margin-top: -16px;
+  outline: 0;
+  width: 32px;
+  height: 32px;
+  text-indent: -9999px;
+  z-index: 9999;
+}
+.bx-wrapper .bx-controls-direction a.disabled {
+  display: none;
+}
+/* AUTO CONTROLS (START / STOP) */
+.bx-wrapper .bx-controls-auto {
+  text-align: center;
+}
+.bx-wrapper .bx-controls-auto .bx-start {
+  display: block;
+  text-indent: -9999px;
+  width: 10px;
+  height: 11px;
+  outline: 0;
+  background: url('images/controls.png') -86px -11px no-repeat;
+  margin: 0 3px;
+}
+.bx-wrapper .bx-controls-auto .bx-start:hover,
+.bx-wrapper .bx-controls-auto .bx-start.active,
+.bx-wrapper .bx-controls-auto .bx-start:focus {
+  background-position: -86px 0;
+}
+.bx-wrapper .bx-controls-auto .bx-stop {
+  display: block;
+  text-indent: -9999px;
+  width: 9px;
+  height: 11px;
+  outline: 0;
+  background: url('images/controls.png') -86px -44px no-repeat;
+  margin: 0 3px;
+}
+.bx-wrapper .bx-controls-auto .bx-stop:hover,
+.bx-wrapper .bx-controls-auto .bx-stop.active,
+.bx-wrapper .bx-controls-auto .bx-stop:focus {
+  background-position: -86px -33px;
+}
+/* PAGER WITH AUTO-CONTROLS HYBRID LAYOUT */
+.bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-pager {
+  text-align: left;
+  width: 80%;
+}
+.bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-controls-auto {
+  right: 0;
+  width: 35px;
+}
+/* IMAGE CAPTIONS */
+.bx-wrapper .bx-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #666;
+  background: rgba(80, 80, 80, 0.75);
+  width: 100%;
+}
+.bx-wrapper .bx-caption span {
+  color: #fff;
+  font-family: Arial;
+  display: block;
+  font-size: .85em;
+  padding: 10px;
+}
+/* div.bx-wrapper{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	border:none;
+}
+
+ul.bxslider{
+	width:100%;
+	position:relative;
+}
+
+.bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-controls-auto{
+	display:none;
+}
+
+.bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-pager{
+	display:none;
+}
+
+ul.bxslider>li>div>pre{
+	    font-size: 31px;
+    font-weight: bold;
+    color: white;
+    font-family: "나눔고딕";
+    line-height: 40px;
+}
+
+ul.bxslider>li>div>input{ */
+	    background-color: rgba(0,0,0,0);
+    border: 2px solid #fff;
+    padding: 20px;
+    font-size: 19px;
+    color: #fff;
+    margin-top: 26px;
+}

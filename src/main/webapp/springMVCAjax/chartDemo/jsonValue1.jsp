@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+[
+{
+  "one":10,
+  "two":20,
+  "three":3
+},
+ {
+  "one":50,
+  "two":5,
+  "three":9
+},
+{
+  "one":25,
+  "two":20,
+  "three":7
+}   
+]
